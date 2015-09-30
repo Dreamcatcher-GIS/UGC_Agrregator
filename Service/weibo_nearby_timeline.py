@@ -22,3 +22,55 @@ def nearbytline():
     # print data["statuses"][0]["url_objects"][0]["object"]["object"]["address"]["fax"]
     # print data
     return data
+
+def userShow(userName):
+    db = conMySql.openSQL()
+    #微博账号获取
+    weiboacount = conMySql.getweiboacount(db)
+    app_key=weiboacount[1]
+    app_secret=weiboacount[2]
+    token=weiboacount[3]
+
+    client = APIClient(app_key, app_secret, redirect_uri='')
+    client.set_access_token(token, 0)
+
+    data=client.users.show.get(screen_name=userName)
+    return data
+def searchTopics(topics):
+    db = conMySql.openSQL()
+    #微博账号获取
+    weiboacount = conMySql.getweiboacount(db)
+    app_key=weiboacount[1]
+    app_secret=weiboacount[2]
+    token=weiboacount[3]
+
+    client = APIClient(app_key, app_secret, redirect_uri='')
+    client.set_access_token(token, 0)
+
+    data = client.search.topics.get(q=topics,count=50)
+    return data
+def userMessage(status,data,client,mid,userName):
+    if status == 1:
+        return data
+    else:
+        messageData = client.statuses.user_timeline.get(screen_name=userName,mix_id=mid,count=100)
+        length = len(messageData['statuses'])
+        if length == 1:
+            data.append(messageData['statuses'][0])
+            status = 1
+        else:
+            i = 0
+            while i<length:
+                data.append(messageData['statuses'][i])
+                i+=1
+                if i == length-1:
+                    mid = messageData['statuses'][i]['mid']
+                    status = 0
+                    break
+    return  userMessage(status,data,client,mid,userName)
+
+
+if __name__ =='__main__':
+    data = searchTopics(u"滁州1912")
+    print len(data["statuses"])
+    pass
