@@ -5,9 +5,9 @@ import MySQLdb
 import uuid
 
 class BaiduMapDAO(object):
-    def __init__(self,host= 'localhost',db='easygodb',user='root',password='1234'):
+    def __init__(self,host= 'localhost',db='map',user='root',password='1234'):
         self.host = 'localhost'
-        self.db = 'baidumap'
+        self.db = 'map'
         self.user='root'
         self.password = '1234'
 
@@ -44,7 +44,7 @@ class BaiduMapDAO(object):
                 groupon_num = poi['detail_info']['groupon_num'] if poi['detail_info'].has_key('groupon_num') else 0
                 discount_num = poi['detail_info']['discount_num'] if poi['detail_info'].has_key('discount_num') else 0
             cursor.execute(\
-                "insert into placepoi(guid,name,lat,lng,address,uid,telephone,type,tag,detail_url,price,shop_hours,overall_rating,taste_rating,service_rating,environment_rating,facility_rating,hygiene_rating,technology_rating,image_num,comment_num,favorite_num,checkin_num,groupon_num,discount_num)\
+                "insert into baidupoi(guid,name,lat,lng,address,uid,telephone,type,tag,detail_url,price,shop_hours,overall_rating,taste_rating,service_rating,environment_rating,facility_rating,hygiene_rating,technology_rating,image_num,comment_num,favorite_num,checkin_num,groupon_num,discount_num)\
                 values(%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)",
                 (guid,name,lat,lng,address,uid,telephone,type,tag,detail_url,price,shop_hours,overall_rating,taste_rating,service_rating,environment_rating,facility_rating,hygiene_rating,technology_rating,image_num,comment_num,favorite_num,checkin_num,groupon_num,discount_num)
                 )

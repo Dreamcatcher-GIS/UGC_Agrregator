@@ -25,7 +25,7 @@ selenium调用需要，需下载系统对应版本，将其放置到系统能直
 
 ##数据库：
 
-###weibo
+###数据库名:weibo
 1.api_account<br />
 ```sql
 DROP TABLE IF EXISTS `api_account`;
@@ -79,5 +79,39 @@ CREATE TABLE `weibo_id` (
   `userID` bigint(20) NOT NULL,
   `weiboID` varchar(20) NOT NULL,
   `pageNum` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+```
+
+
+###数据库名:map
+1.api_account<br />
+```sql
+DROP TABLE IF EXISTS `baidupoi`;
+CREATE TABLE `baidupoi` (
+  `guid` varchar(40) DEFAULT NULL,
+  `lat` double DEFAULT NULL,
+  `lng` double DEFAULT NULL,
+  `name` varchar(50) DEFAULT NULL,
+  `address` varchar(50) DEFAULT NULL,
+  `telephone` varchar(40) DEFAULT NULL,
+  `type` varchar(20) DEFAULT NULL,
+  `detail_url` longtext,
+  `tag` varchar(20) DEFAULT NULL,
+  `price` varchar(10) DEFAULT NULL,
+  `shop_hours` varchar(10) DEFAULT NULL,
+  `overall_rating` varchar(5) DEFAULT NULL,
+  `taste_rating` varchar(5) DEFAULT NULL,
+  `service_rating` varchar(5) DEFAULT NULL,
+  `environment_rating` varchar(5) DEFAULT NULL,
+  `facility_rating` varchar(5) DEFAULT NULL,
+  `hygiene_rating` varchar(5) DEFAULT NULL,
+  `technology_rating` varchar(5) DEFAULT NULL,
+  `image_num` varchar(5) DEFAULT NULL,
+  `groupon_num` int(11) DEFAULT NULL,
+  `comment_num` varchar(5) DEFAULT NULL,
+  `discount_num` int(11) DEFAULT NULL,
+  `favorite_num` varchar(5) DEFAULT NULL,
+  `checkin_num` varchar(5) DEFAULT NULL,
+  `uid` varchar(30) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 ```
