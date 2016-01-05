@@ -12,6 +12,7 @@ class BaiduMapSnatcherService(object):
     def getPoi(self,lng0,lat0,lng1,lat1,query):
         # 使用矩形范围初始栈
         queue = [[lng0,lat0,lng1,lat1]]
+        poiSum = 0
         while len(queue)!=0:
             # 取出一个查询范围
             range = queue.pop()
@@ -31,4 +32,6 @@ class BaiduMapSnatcherService(object):
                     continue
                 # 如果查询结果小于20则存储
                 else:
-                    self.baiduMapDAO.savePOIData(data)
+                    # self.baiduMapDAO.savePOIData(data)
+                    poiSum += len(data['results'])
+        print poiSum

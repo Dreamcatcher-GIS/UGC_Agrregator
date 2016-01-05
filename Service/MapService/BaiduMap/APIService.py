@@ -21,5 +21,5 @@ class BaiduMapAPIService(object):
     #地址：http://api.map.baidu.com/place/v2/search
     #类型：get
     def placeSearch(self,query,bounds,output="json",page_size="20",scope=2):
-        data = self.baiduMapClient.place.v2.search.get(ak=self.__ak,query=query,bounds=bounds,output=output,page_size=page_size,scope=scope)
+        data = self.baiduClient.place.v2.search.get(ak=self.__ak,query=query,bounds=bounds,output=output,page_size=page_size,scope=scope)
         return data
